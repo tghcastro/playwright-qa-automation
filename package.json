@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-"scripts": {
-  "format": "prettier --write '**/*.{js,ts,json,md}'",
-  "lint": "eslint",
-  "lint:fix": "eslint . --fix"
-},
+  "scripts": {
+    "format": "prettier --write '**/*.{js,ts,json,md}'",
+    "lint": "eslint",
+    "lint:fix": "eslint . --fix"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
