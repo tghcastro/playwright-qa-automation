@@ -1,5 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
-import { Time } from "./src/helpers/consts";
+import { Time } from './src/helpers/consts';
 import * as dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -12,17 +12,17 @@ dotenv.config({ path: path.resolve(__dirname, `.env.${envTarget}`) });
 export default defineConfig({
   testDir: './src/tests',
 
-  timeout: Time.THIRTY_SECONDS ,
+  timeout: Time.THIRTY_SECONDS,
 
   expect: {
-    timeout:  Time.TEN_SECONDS ,
+    timeout: Time.TEN_SECONDS,
   },
 
-  reporter: "html",
+  reporter: 'html',
 
   use: {
     baseURL: process.env.BASE_URL,
-    headless: true
+    headless: true,
   },
 
   projects: [
