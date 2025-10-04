@@ -3,6 +3,7 @@ import { Time } from './src/helpers/consts';
 import * as dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import * as os from "node:os";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -17,9 +18,22 @@ export default defineConfig({
   expect: {
     timeout: Time.TEN_SECONDS,
   },
-
-  reporter: 'html',
-
+  reporter: [
+    ['html'],
+    ['line'],
+    [
+      'allure-playwright',
+      {
+        detail: false,
+        environmentInfo: {
+          os_platform: os.platform(),
+          os_release: os.release(),
+          os_version: os.version(),
+          node_version: process.version,
+        },
+      },
+    ],
+  ],
   use: {
     baseURL: process.env.BASE_URL,
     headless: true,

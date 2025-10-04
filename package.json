@@ -6,7 +6,8 @@
   "scripts": {
     "format": "prettier --write '**/*.{js,ts,json,md}'",
     "lint": "eslint",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "testAndReport": "npx playwright test && allure serve allure-results"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +16,7 @@
   "devDependencies": {
     "@playwright/test": "^1.55.1",
     "@types/node": "^24.6.2",
+    "allure-playwright": "^3.4.1",
     "dotenv": "^17.2.3",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.4"
