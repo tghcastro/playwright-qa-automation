@@ -3,6 +3,7 @@ import * as allure from 'allure-js-commons';
 export default class BasePage {
   constructor() {
     const proto = Object.getPrototypeOf(this);
+
     for (const name of Object.getOwnPropertyNames(proto)) {
       if (name === 'constructor') continue;
       const original = this[name];
@@ -15,13 +16,19 @@ export default class BasePage {
               ? args.map((x) => x.substring(0, 3) + '***')
               : args;
 
-          // Wrap original method to add Allure Step with parameters masking credentials
-          return allure.step(
-            `${this.constructor.name}.${name}(${safeArgs.join(', ')})`,
-            async () => {
-              return await original.apply(this, args);
-            }
-          );
+          // Check if Allure test is active
+          if (allure.runtime?.currentTest) {
+            // Wrap original method to add Allure Step with masked parameters
+            return allure.step(
+              `${this.constructor.name}.${name}(${safeArgs.join(', ')})`,
+              async () => {
+                return await original.apply(this, args);
+              }
+            );
+          } else {
+            // Outside test context → just call the method normally
+            return await original.apply(this, args);
+          }
         };
       }
     }

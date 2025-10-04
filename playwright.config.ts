@@ -41,7 +41,7 @@ export default defineConfig({
     trace: 'on-first-retry',
     video: 'on-first-retry',
   },
-
+  globalSetup: './src/helpers/global.setup.js',
   projects: [
     {
       name: 'chromium',
