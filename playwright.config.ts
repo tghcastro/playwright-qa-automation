@@ -37,6 +37,9 @@ export default defineConfig({
   use: {
     baseURL: process.env.BASE_URL,
     headless: true,
+    screenshot: 'only-on-failure',
+    trace: 'on-first-retry',
+    video: 'on-first-retry',
   },
 
   projects: [
