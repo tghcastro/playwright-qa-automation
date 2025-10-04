@@ -1,5 +1,5 @@
 import { test as base } from '@playwright/test';
-import LogInPage from '../page-objects/login.page'
+import LogInPage from '../page-objects/login.page';
 
 export const extendedTest = base.extend({
   authenticatedPage: async ({ browser }, use) => {
@@ -9,7 +9,7 @@ export const extendedTest = base.extend({
     });
     const page = await context.newPage();
     const loginPage = new LogInPage(page);
-    await loginPage.open()
+    await loginPage.open();
 
     await use(page);
     await context.close();

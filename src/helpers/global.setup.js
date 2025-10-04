@@ -19,7 +19,7 @@ async function globalSetup() {
   const logInOrchestration = new LoginOrchestration(page);
   const adminPage = await logInOrchestration.logInWithCredentials(username, password);
 
-  expect(adminPage.isOpen()).toBeTruthy()
+  expect(adminPage.isOpen()).toBeTruthy();
 
   await page.context().storageState({ path: 'authenticatedUser.json' });
 

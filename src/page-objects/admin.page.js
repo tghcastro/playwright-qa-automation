@@ -38,9 +38,9 @@ export default class AdminPage extends BasePage {
   async getDisplayedUsers() {
     return await this.page.$$eval("//*[@id='dataTable']/tbody/tr", (rows) => {
       if (rows.length === 0) {
-        return []
-      } 
-      
+        return [];
+      }
+
       const headers = Array.from(rows[0].closest('table').querySelectorAll('thead th')).map((th) =>
         th.innerText.trim()
       );

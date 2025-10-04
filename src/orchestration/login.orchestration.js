@@ -1,5 +1,5 @@
 import { expect } from '@playwright/test';
-import * as allure from "allure-js-commons";
+import * as allure from 'allure-js-commons';
 import CovaAppStart from '../page-objects/cova-app-start.page';
 
 export default class LoginOrchestration {
@@ -16,8 +16,8 @@ export default class LoginOrchestration {
         `[LogIn] Authentication attempt [Username:${username.substring(0, 3)}****] [Password provided:${password !== ''}]`
       );
 
-      const covaAppStartPage = new CovaAppStart(this.page)
-      await covaAppStartPage.open()
+      const covaAppStartPage = new CovaAppStart(this.page);
+      await covaAppStartPage.open();
 
       await expect(this.page).toHaveTitle(expectedCovaAppPageTitle);
 
@@ -29,7 +29,7 @@ export default class LoginOrchestration {
       await logInPage.fillPassword(password);
       const adminPage = await logInPage.clickOnLogIn();
 
-      return adminPage
+      return adminPage;
     });
   }
 }
