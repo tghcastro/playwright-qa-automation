@@ -2,6 +2,7 @@ import { expect } from '@playwright/test';
 import * as allure from 'allure-js-commons';
 import { extendedTest } from '../helpers/custom.fixture';
 import AdminPage from '../page-objects/admin.page';
+import UserListOrchestration from '../orchestration/userlist.orchestration';
 
 extendedTest.beforeEach(async () => {
   await allure.suite('Critical Path Features');
@@ -26,12 +27,8 @@ extendedTest(
 
     const nameToSearchFor = 'Connie Delgado';
 
-    await adminPage.fillSearch(nameToSearchFor);
-    await adminPage.clickOnSearch();
-
-    const expectedSearchDetailsDescription = `Search results for: ${nameToSearchFor}`;
-    expect(adminPage.searchDetailsDescription).toHaveText(expectedSearchDetailsDescription);
-    await expect(adminPage.usersTable).toBeVisible();
+    const userListOrchestration = new UserListOrchestration(authenticatedPage);
+    await userListOrchestration.searchFor(nameToSearchFor);
 
     await allure.step('Validating displayed user data', async () => {
       const pageDisplayedUsers = await adminPage.getDisplayedUsers();
@@ -53,13 +50,8 @@ extendedTest(
 
     const nameToSearchFor = 'Lisa';
 
-    await allure.step('Searching for users', async () => {
-      await adminPage.fillSearch(nameToSearchFor);
-      await adminPage.clickOnSearch();
-      const expectedSearchDetailsDescription = `Search results for: ${nameToSearchFor}`;
-      expect(adminPage.searchDetailsDescription).toHaveText(expectedSearchDetailsDescription);
-      await expect(adminPage.usersTable).toBeVisible();
-    });
+    const userListOrchestration = new UserListOrchestration(authenticatedPage);
+    await userListOrchestration.searchFor(nameToSearchFor);
 
     await allure.step('Validating displayed user data', async () => {
       const pageDisplayedUsers = await adminPage.getDisplayedUsers();
@@ -81,13 +73,8 @@ extendedTest(
 
     const nameToSearchFor = 'not existent user';
 
-    await allure.step('Searching for users', async () => {
-      await adminPage.fillSearch(nameToSearchFor);
-      await adminPage.clickOnSearch();
-      const expectedSearchDetailsDescription = `Search results for: ${nameToSearchFor}`;
-      expect(adminPage.searchDetailsDescription).toHaveText(expectedSearchDetailsDescription);
-      await expect(adminPage.usersTable).toBeVisible();
-    });
+    const userListOrchestration = new UserListOrchestration(authenticatedPage);
+    await userListOrchestration.searchFor(nameToSearchFor);
 
     await allure.step('Validating that the users table is empty', async () => {
       const pageDisplayedUsers = await adminPage.getDisplayedUsers();
