@@ -1,0 +1,32 @@
+feat → nova funcionalidade
+Ex: feat(login): adiciona fluxo de autenticação
+
+fix → correção de bug
+Ex: fix(cart): corrige cálculo de frete
+
+docs → documentação
+Ex: docs(readme): adiciona instruções de instalação
+
+style → mudanças de formatação, indentação, espaços, vírgulas… (sem alterar lógica)
+Ex: style(app): ajusta identação do código
+
+refactor → refatoração de código (nem bugfix, nem nova feature)
+Ex: refactor(auth): simplifica método de validação
+
+perf → melhorias de performance
+Ex: perf(images): otimiza carregamento das imagens
+
+test → adicionar ou corrigir testes
+Ex: test(login): adiciona teste de fluxo inválido
+
+build → mudanças que afetam build ou dependências externas (npm, webpack, etc.)
+Ex: build(deps): atualiza playwright para v1.48
+
+ci → alterações nos pipelines de integração contínua (GitHub Actions, Azure, Jenkins, etc.)
+Ex: ci(azure): adiciona stage de testes e2e
+
+chore → manutenção, tarefas diversas que não afetam código de produção/testes diretamente
+Ex: chore: atualiza versão do node para 20.x
+
+revert → desfazer commit anterior
+Ex: revert: "feat(cart): adiciona cupom de desconto"

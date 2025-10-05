@@ -3,7 +3,7 @@ import { Time } from './src/helpers/consts';
 import * as dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import * as os from "node:os";
+import * as os from 'node:os';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -37,6 +37,9 @@ export default defineConfig({
   use: {
     baseURL: process.env.BASE_URL,
     headless: true,
+    screenshot: 'only-on-failure',
+    trace: 'on-first-retry',
+    video: 'on-first-retry',
   },
 
   projects: [
