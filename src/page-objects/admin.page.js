@@ -1,6 +1,6 @@
 import { expect } from '@playwright/test';
 import BasePage from './base.page';
-
+import convertTableToJson from '../helpers/convertTableToJson';
 export default class AdminPage extends BasePage {
   #URL_PAGE_PATH = '/admin.php';
 
@@ -36,34 +36,6 @@ export default class AdminPage extends BasePage {
 
   // Returns the list of displayed users in the table as a JSON array of objects
   async getDisplayedUsers() {
-    return await this.page.$$eval("//*[@id='dataTable']/tbody/tr", (rows) => {
-      if (rows.length === 0) {
-        return [];
-      }
-
-      const headers = Array.from(rows[0].closest('table').querySelectorAll('thead th')).map((th) =>
-        th.innerText.trim()
-      );
-
-      return rows.map((tableRow) => {
-        const cells = Array.from(tableRow.querySelectorAll('td'));
-        const convertedUserObject = {};
-
-        headers.forEach((header, i) => {
-          let value = cells[i]?.innerText.trim() || null;
-
-          if (header.toLowerCase() === 'age' && value) {
-            value = parseInt(value, 10);
-          }
-          if (header.toLowerCase() === 'salary' && value) {
-            value = parseFloat(value.replace(/[^0-9.-]+/g, ''));
-          }
-
-          convertedUserObject[header] = value;
-        });
-
-        return convertedUserObject;
-      });
-    });
+    return await convertTableToJson(this.page, "//*[@id='dataTable']/tbody/tr");
   }
 }
