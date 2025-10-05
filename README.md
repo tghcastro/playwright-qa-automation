@@ -16,4 +16,6 @@
 
   npx playwright codegen
     Auto generate tests with Codegen.
+
+  npm run testAndReport
 ```
